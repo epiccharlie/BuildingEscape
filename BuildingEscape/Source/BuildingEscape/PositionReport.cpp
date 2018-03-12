@@ -2,6 +2,7 @@
 
 #include "PositionReport.h"
 #include "GameFramework/Actor.h"
+//#include "Math/Vector.h"
 
 // Sets default values for this component's properties
 UPositionReport::UPositionReport()
@@ -19,9 +20,11 @@ UPositionReport::UPositionReport()
 void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	FVector objectLoc = GetOwner()->GetActorLocation();
 	FString objectName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("Position Report %s"), *objectName);
+	FString objectPos;
+	objectPos = FString::Printf(TEXT("X = %.2f, Y = %.2f, Z = %.2f"), objectLoc.X, objectLoc.Y, objectLoc.Z);
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s"), *objectName, *objectPos );
 
 	// ...
 	
